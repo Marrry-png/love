@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+  <title>520 · 喵哩致 Keegan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0c0e;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Courier New', '等线', monospace;
+      overflow-x: hidden;
+      background-image: 
+        linear-gradient(rgba(0, 20, 0, 0.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 20, 0, 0.18) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    /* 飘落玫瑰花瓣 */
+    .petal {
+      position: fixed;
+      top: -10%;
+      color: #8b0000;
+      font-size: 1.8rem;
+      opacity: 0.65;
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 0;
+      text-shadow: 0 0 8px #4a0000;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.05;
+      }
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      width: 90%;
+      max-width: 440px;
+      background: rgba(8, 10, 8, 0.88);
+      backdrop-filter: blur(18px);
+      border: 1px solid #3a4a2e;
+      border-radius: 4px;
+      padding: 2rem 1.8rem 2rem;
+      box-shadow: 0 0 60px rgba(0, 40, 0, 0.5), inset 0 0 40px rgba(0, 0, 0, 0.7);
+      text-align: center;
+      color: #b8c0b2;
+    }
+
+    /* Keegan 真实图片容器 */
+    .keegan-img {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      border: 2px solid #5a624a;
+      box-shadow: 0 0 30px rgba(0, 80, 0, 0.4);
+      overflow: hidden;
+      background: #0f130c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .keegan-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+    }
+
+    .from-to {
+      font-size: 0.8rem;
+      color: #7b8b6f;
+      letter-spacing: 2px;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 400;
+      letter-spacing: 0.35rem;
+      color: #d4cfc0;
+      margin-bottom: 0.2rem;
+      text-shadow: 0 0 18px #2f5a2f;
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      color: #8a9a74;
+      letter-spacing: 0.2rem;
+      margin-bottom: 1.8rem;
+      border-bottom: 1px dashed #3a4a2e;
+      padding-bottom: 0.7rem;
+      display: inline-block;
+    }
+
+    .heartbeat {
+      font-size: 2rem;
+      color: #a52a2a;
+      display: inline-block;
+      animation: pulse 1.2s ease-in-out infinite;
+      margin: 0 0.3rem;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.35); opacity: 1; text-shadow: 0 0 30px red; }
+    }
+
+    .message {
+      background: #0e110b;
+      border: 1px solid #2d3a20;
+      padding: 1.3rem;
+      margin: 1.5rem 0 1rem;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      text-align: left;
+      color: #a6b394;
+      position: relative;
+    }
+
+    .message::before {
+      content: "📡 加密频道 · 幽灵小队";
+      display: block;
+      font-size: 0.7rem;
+      color: #5b6b4c;
+      margin-bottom: 0.6rem;
+      letter-spacing: 2px;
+    }
+
+    .btn {
+      background: transparent;
+      border: 1px solid #5a624a;
+      color: #c0c9ae;
+      padding: 0.8rem 2rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      letter-spacing: 0.25rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      margin-top: 0.6rem;
+      background: rgba(18, 22, 13, 0.7);
+    }
+
+    .btn:hover {
+      background: #2c3820;
+      border-color: #8b9a6e;
+      box-shadow: 0 0 25px rgba(70, 90, 30, 0.7);
+      color: #fff;
+    }
+
+    .secret-letter {
+      display: none;
+      margin-top: 1.8rem;
+      background: #0f140c;
+      border: 1px solid #5a624a;
+      padding: 1.5rem 1rem;
+      font-style: italic;
+      color: #dcd8c2;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .secret-letter p {
+      margin: 0.5rem 0;
+    }
+
+    .signature {
+      text-align: right;
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      color: #7e8b65;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.3rem;
+    }
+
+    footer {
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      color: #3b4532;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 飘落花瓣动态生成 -->
+  <div class="card">
+    <!-- Keegan 真实形象 -->
+    <div class="keegan-img">
+      <img src="https://static.wikia.nocookie.net/callofduty/images/2/2e/Keegan_Russ_Ghosts.png" 
+           alt="Keegan P. Russ" 
+           onerror="this.parentElement.innerHTML='<div style=color:#5a624a;font-size:0.8rem;>KEEGAN</div>'">
+    </div>
+
+    <div class="from-to">喵哩 ▸ KEEGAN</div>
+    <h1>KEEGAN</h1>
+    <div class="tagline">"I'll always have your six."</div>
+
+    <div class="heartbeat">♥</div>
+
+    <div class="message">
+      520 · 我的幽灵战士<br>
+      在每一场无声渗透里,你都是我唯一的导航点。<br>
+      今天,申请成为你的永久队友——<br>
+      任务代号:<strong>余生</strong>。
+    </div>
+
+    <button class="btn" id="revealBtn">▸ 解密喵哩情书</button>
+
+    <div class="secret-letter" id="secretLetter">
+      <p>从"幽灵"小队到人间烟火,</p>
+      <p>你是我地图上唯一标记的撤离点。</p>
+      <p>心跳是摩尔斯密码,</p>
+      <p>一直在重复:<strong>"坚守位置,等我。"</strong></p>
+      <p>520快乐,我的Keegan。</p>
+      <div class="signature">
+        <span>🐾 喵哩</span>
+      </div>
+    </div>
+
+    <footer>GHOSTS · 加密通信 // 05.20</footer>
+  </div>
+
+  <script>
+    // 飘落花瓣
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.innerHTML = '🖤';
+      petal.style.left = Math.random() * 100 + '%';
+      petal.style.animationDuration = Math.random() * 4 + 5 + 's';
+      petal.style.fontSize = (Math.random() * 1.6 + 1.2) + 'rem';
+      document.body.appendChild(petal);
+
+      setTimeout(() => {
+        petal.remove();
+      }, 9500);
+    }
+
+    setInterval(createPetal, 320);
+
+    // 情书解密按钮
+    document.getElementById('revealBtn').addEventListener('click', function() {
+      const letter = document.getElementById('secretLetter');
+      if (letter.style.display === 'block') {
+        letter.style.display = 'none';
+        this.textContent = '▸ 解密喵哩情书';
+      } else {
+        letter.style.display = 'block';
+        this.textContent = '▾ 收回密件';
+      }
+    });
+  </script>
+</body>
+</html>
